@@ -1,0 +1,155 @@
+// ========================
+// Mixin's
+// ========================
+@mixin roundBottom {
+    position: absolute;
+    bottom: -325px;
+    left: -25%;
+    width: 150vw;
+    height: rem-calc(400);
+    background-color: $white;
+    border-radius: 100%;
+    z-index: 1;
+
+    .menu-logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  
+      .menu-logo {
+          height: 60px;
+          width: 47px;
+          margin-top: -30px;
+          background: url(/wp-content/themes/RodgersGroup2019/src/assets/images/rodgersShield.svg);
+          background-size: contain;
+          background-repeat: no-repeat;
+      }
+    }
+
+    @include breakpoint(medium) {
+        .menu-logo-container {
+            display: none;
+        }
+    }
+  }
+  
+  @mixin gradientOverlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.4;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#96a4de+1,a4aed6+31,c1b3b7+74,e4c69c+100&1+0,1+52,0.74+100 */
+    background: -moz-linear-gradient(top,  rgba(150,164,222,1) 0%, rgba(150,164,222,1) 1%, rgba(164,174,214,1) 31%, rgba(178,176,199,1) 52%, rgba(193,179,183,0.88) 74%, rgba(228,198,156,0.74) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(150,164,222,1) 0%,rgba(150,164,222,1) 1%,rgba(164,174,214,1) 31%,rgba(178,176,199,1) 52%,rgba(193,179,183,0.88) 74%,rgba(228,198,156,0.74) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(150,164,222,1) 0%,rgba(150,164,222,1) 1%,rgba(164,174,214,1) 31%,rgba(178,176,199,1) 52%,rgba(193,179,183,0.88) 74%,rgba(228,198,156,0.74) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96a4de', endColorstr='#bde4c69c',GradientType=0 ); /* IE6-9 */
+  }
+
+@mixin blur ($radius) {
+	-webkit-filter: blur($radius+px); /* Chrome, Safari */
+	-ms-filter: blur($radius+px); /* IE12? */
+	filter: url("data:image/svg+xml;utf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"blur\"><feGaussianBlur stdDeviation=\"#{$radius}\" /></filter></svg>#blur"); /* Firefox, Safari, Chrome*/
+	filter: progid:DXImageTransform.Microsoft.Blur(Strength=$radius); /* IE9 */
+}
+
+@mixin component-heading($gutters) {
+    @include xy-grid();
+    // @include xy-gutters($gutters, $gutter-position: top);
+    @include flex;
+    @include flex-align($x: center);
+}
+
+@mixin serviceListItem {
+  @include flex;
+  @include flex-align($y: middle);
+  position: relative;
+  list-style: none;
+  font-size: rem-calc(24);
+  padding: 20px 40px;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+      background-color: lighten($secondary-color, 20);
+
+      i {
+          color: white;
+      }
+  }
+
+  i {
+      // background-color: $light-gray;
+      width: rem-calc(32);
+      height: rem-calc(32);
+      border-radius: 100%;
+      margin-right: 30px;
+      font-size: rem-calc(32);
+      // padding: 20px;
+  }
+
+  a {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+  }
+}
+
+@mixin roundTop {
+  position: absolute;
+  top: -325px;
+  left: -25%;
+  right: 0;
+  width: 150vw;
+  height: rem-calc(400);
+  background-color: $white;
+  border-radius: 100%;
+}
+
+@mixin divider {
+  // Divider
+  .divider {
+    margin:64px auto;
+    max-width:400px; 
+    position:relative;
+
+    .dividermask { 
+      overflow:hidden; height:20px; 
+
+      &:after { 
+        content:''; 
+        display:block; margin:-25px auto 0;
+        width:100%; height:25px;  
+        border-radius: 125px / 12px;
+        box-shadow:0 0 8px $light-gray;
+      }
+    }
+
+    span {
+      width:50px; height:50px; 
+      position:absolute; 
+      bottom:100%; margin-bottom:-25px;
+      left:50%; margin-left:-25px;
+      border-radius:100%;
+      box-shadow:0 2px 4px $light-gray;
+      background:#fff;
+    }
+
+    i {
+      position:absolute;
+      top:4px; bottom:4px;
+      left:4px; right:4px;
+      border-radius:100%;
+      border:1px dashed $light-gray;
+      text-align:center;
+      line-height:40px;
+      font-style:normal;
+      color: $secondary-color;
+    }
+  }
+}

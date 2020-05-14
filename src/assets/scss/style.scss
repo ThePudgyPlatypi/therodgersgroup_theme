@@ -1,0 +1,475 @@
+// ========================
+// GENERAL STYLES
+// ========================
+html {
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.body {
+    @include flex;
+    @include flex-direction(column);
+    overflow: hidden;
+    width: 100%;
+    // height: 100%;
+    // reset all paragraphs that don't have my style on them
+    p {
+       padding: 0;
+       margin: 0;
+    }
+
+    // my paragraph styles
+    .bp {
+        padding: 0.5rem 0;
+    }
+
+    .stockton {
+        a {
+            font-weight: bold;
+        }
+    }
+}
+
+h1 {
+    font-size: 2rem;
+
+    @include breakpoint(medium) {
+        font-size: rem-calc(50);
+    }
+}
+
+h2 {
+    font-size: 1.5rem;
+
+    @include breakpoint(medium) {
+        font-size: 2.25rem;
+    }
+}
+
+h4, h3 {
+    font-size: 1.5rem;
+
+    @include breakpoint(medium) {
+        font-size: 1.5rem;
+    }
+}
+
+section {
+    .grid-container {
+        @include divider();
+
+        h1:first-child {
+            text-align: center;
+        }
+    }
+}
+
+.no-js {
+    @include breakpoint(small only) {
+      .top-bar {
+        display: none;
+      }
+    }
+  
+    @include breakpoint(medium) {
+      .title-bar {
+        display: none;
+      }
+    }
+}
+
+.site-header {
+    position: fixed;
+    height: auto;
+    width: 100%;
+    z-index: 20;
+}
+
+ol {
+    margin-left: 2rem;
+    list-style: none;
+    counter-reset: counter;
+
+    li {
+        counter-increment: counter;
+        display: flex;
+
+        &:before {
+            content: "|" counter(counter) "|";
+            color: $primary-color;
+            font-size: 1.1rem;
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+.testimonial-slider {
+    margin-bottom: 50px;
+    width: 100%;
+    height: 100%;
+
+    .orbit-controls {
+        button {
+            color: $secondary-color;
+        }
+    }
+}
+
+.read-more-arrow {
+    display: none;
+
+    @include breakpoint(medium) {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        bottom: 0;
+        width: 100%;
+        z-index: 1;
+        position: absolute;
+        opacity: 0;
+        animation-name: almost-fadeIn;
+        animation-duration: 2s;
+        animation-delay: 6s;
+        animation-iteration-count: 1; 
+        animation-fill-mode:forwards;
+    }
+
+    a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h6 {
+        color: $white;
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        align-self: center;
+        margin-bottom: 0;
+
+        @include breakpoint(medium) {
+            font-size: 0.8rem;
+        }
+    }
+
+    i {
+        align-self: center;
+        font-size: 1rem;
+        color: $white;
+        margin-bottom: rem-calc(80);
+        animation-name: up-down;
+        animation-duration: 2s;
+        animation-direction: alternate;
+        animation-iteration-count: infinite; 
+
+        @include breakpoint(medium) {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+// ========================
+// FULL PAGE HEADER SYLES
+// ========================
+.front-hero,
+.half-hero-video {
+    height: 100vh;
+    width: 100%;
+    background: initial;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .hero-video {
+        position: absolute;
+        min-height: 100vh;
+        min-width: 100%;
+        z-index: 0;
+    }
+
+    .marketing {
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        width: 100%;
+
+        @include breakpoint(medium) {
+            width: 80%;
+        }
+
+        @include breakpoint(large) {
+            width: 70%;
+        }
+
+        @include breakpoint(xlarge) {
+            width: 60%;
+        }
+
+        @include breakpoint(xxlarge) {
+            width: 50%;
+        }
+
+        .tagline {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+
+            img {
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                color: $secondary-color;
+                font-size: 1rem;
+                font-weight: bold;
+
+                @include breakpoint(medium) {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .button-group {
+                justify-content: center;
+            }
+        }
+
+        .watch {
+            width: 100%;
+            margin: 0;
+            span {
+                a {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+    .video-overlay {
+        @include gradientOverlay();
+    }
+
+    .round-bottom {
+        @include roundBottom();
+        z-index: 1;
+    }
+}
+
+// ========================
+// HALF PAGE HEADER SYLES
+// ========================
+
+.half-hero {
+    background-position: top;
+    margin-top: 0;
+    position: relative;
+    z-index: -1;
+    overflow: hidden;
+
+    @include breakpoint(medium) {
+        margin-top: rem-calc(25);
+    }
+
+    .header-overlay {
+        @include gradientOverlay();
+        z-index: 0;
+    }
+};
+
+.round-bottom {
+    @include roundBottom();
+}
+
+.half-hero-video {
+    height: 40vh;
+    align-items: flex-start;
+
+    @include breakpoint(medium) {
+        height: 60vh;
+    }
+
+    @include breakpoint(xlarge) {
+        height: 70vh;
+    }
+
+    .hero-video {
+        display: none;
+
+        @include breakpoint(medium) {
+            min-height: 60vh;
+            display: initial;
+        }
+    
+        @include breakpoint(xlarge) {
+            min-height: 70vh;
+            display: initial;
+        }
+    }
+
+    .marketing {
+        display: flex;
+        width: 80%;
+        padding-top: 30px;
+
+        @include breakpoint(medium) {
+            display: none;
+        }
+    }
+}
+
+// ========================
+// NO HEADER SYLES
+// ========================
+
+.no-header-header-container {
+    position: relative;
+    height: 25vh;
+    margin-top: 0;
+    z-index: -1;
+    overflow: hidden;
+
+    @include breakpoint(medium) {
+        margin-top: rem-calc(25);
+    }
+
+    .no-header-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url(../images/noHeaderRepeatBG.jpg);
+        background-size: rem-calc(400);
+        background-attachment: fixed;
+    }
+
+    .header-overlay {
+        @include gradientOverlay();
+        opacity: 0.6;
+        z-index: 0;
+    }
+
+}
+
+
+// ========================
+// TEAM PAGE SYLES
+// ========================
+
+.team-page {
+    text-align: center;
+    padding-bottom: 50px;
+
+    svg {
+        position: absolute;
+        top: 0; 
+        left: 0;
+        z-index: -1;
+    }
+}
+
+.frank-wrapper {
+    @include xy-grid;
+
+    .frank-rodgers-link {
+        text-align: center;
+        width: 100%;
+        @include xy-cell(12);
+    
+        img {
+            display: inline-block;
+            margin: 0 auto;
+            width: 100px;
+            height: auto;
+        }
+    }
+}
+
+
+// ========================
+// FOOTER STYLES
+// ========================
+@mixin footerHover {
+    &:hover {
+        color: $secondary-color;
+    }
+}
+
+.contact-background {
+    background: $light-gray;
+}
+
+.footer-container {
+    max-width: 100%;
+    background-color: #989898;
+    padding: 0;
+
+    a {
+        color: white;
+        @include footerHover();
+    }
+
+    .footer-grid {
+        padding: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-content: baseline;
+
+        .footer-left {
+            p {
+                padding: 0;
+                margin: 0;
+            }
+
+            .company-name {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .credit-bar {
+        text-align: center;
+        min-width: 100%;
+        height: 100%;
+        color: white;
+        background-color: $near-black;
+        padding: 1rem;
+        @include flex;
+        justify-content: center;
+
+        p {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: $warning-color;
+        }
+    }
+}
+
+// ======================================
+// 404
+//=======================================
+.error-404 {
+    margin-top: 1rem;
+    text-align: center;
+
+    @include breakpoint(medium) {
+        margin-top: 8rem;
+    }
+
+    .entry-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ul {
+        text-align: left;
+    }
+}

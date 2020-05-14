@@ -1,0 +1,161 @@
+// Navigation breakpoints
+.mobile-menu,
+.site-title-bar {
+  @include hide-for(medium);
+}
+//
+.desktop-menu,
+.site-navigation .top-bar-left {
+  @include show-for(medium);
+}
+
+// Site title
+.site-desktop-title a {
+  font-weight: bold;
+}
+
+// WP post navigation
+.post-navigation {
+  @include clearfix;
+}
+
+.nav-previous {
+  float:left;
+}
+
+.nav-next {
+  float:right;
+}
+
+.round-top {
+  @include roundTop();
+  border: 2px solid $primary-color;
+  z-index: -1;
+}
+
+.top-bar {
+  justify-content: center;
+  background-color: initial;
+
+  .top-bar-right {
+    margin-left: initial;
+    position: relative;
+    width: 100%;
+
+    // before puts it just inside the element 
+    // so needs to be on top-bar-right to be positioned by it and right BEFORE the next element
+    &:before {
+      @include roundTop();
+      content:"";
+      border: 4px solid $secondary-color;
+      z-index: -2;
+      margin-top: 2px;
+    }
+  }
+
+  #menu-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    #menu-logo {
+      height: 60px;
+      width: 47px;
+      margin-top: 15px;
+      background: url(../images/rodgersShield.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  // main horizontal menu
+  #menu-main-menu {
+    background-color: initial;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    li {
+      transition: all 0.2s ease-out;
+      flex: 0 1 auto;
+    }
+
+    a {
+      color: black;
+      width: 100%;
+      font-size: 0.6rem;
+      transition: all 0.1s ease-out;
+
+      @include breakpoint(medium) {
+        font-size: 0.7rem;
+      }
+
+      @include breakpoint(large) {
+        font-size: 1rem;
+      }
+
+      &:after {
+        transition: transform 0.2s ease-out;
+      }
+    }
+      
+    & > li {
+      &:hover {
+        background:  $primary-color;
+
+        & > a {
+          color: white;
+
+          &:after {
+            border-color: white transparent transparent;
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      a {
+        color: black;
+      }
+
+      // first submenu
+      ul.dropdown.menu.vertical.submenu.is-dropdown-submenu.first-sub {
+        background-color: white;
+        border: initial;
+
+        li {
+          color: black;
+          &:hover {
+              background:  $primary-color;
+      
+              & > a {
+                color: white;
+
+                &:after {
+                  border-color: transparent white transparent;
+                  transform: rotate(180deg);
+                }
+              }
+          }
+
+          // second leve submenu
+          ul.dropdown.menu.vertical.submenu.is-dropdown-submenu {
+            li {
+              & > a {
+                color: black;
+              }
+
+              &:hover {
+                  background:  $secondary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.top-bar #menu-main-menu #menu-item-5384.menu-item-home:hover > a:after {
+  transform: none;
+}

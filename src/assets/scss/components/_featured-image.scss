@@ -1,0 +1,14 @@
+.featured-hero {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 40vh;
+
+  @include breakpoint(medium) {
+    height: 60vh;
+  }
+
+  @include breakpoint(xlarge) {
+    height: 70vh;
+  }
+}

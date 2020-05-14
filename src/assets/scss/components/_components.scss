@@ -1,0 +1,503 @@
+// ========================
+// All Comnponents
+// ========================
+
+.grid-container {
+    @include xy-grid-container();
+    @include xy-gutters(50, $gutter-position: top);
+}
+
+.strong {
+    font-weight: bold;
+}
+
+// One column - One Row with Heading
+// example in "welcome to rodgers group"
+.oneRow-oneCol-body {
+    @include xy-grid-container();
+    padding-bottom: 20px;
+
+    .bp {
+        @include xy-grid();
+    }
+}
+
+// picture with text to the right
+// example in our vision or our mission
+.oneRow-twoCol-PicLeft-H,
+.oneRow-twoCol-PicRight-H {
+    @include xy-grid();
+    @include flex;
+    @include flex-align($x: center, $y: middle);
+    padding-top: 20px;
+    margin-bottom: 20px;
+
+    &.alignTop {
+        @include flex-align($x: center, $y: top);
+    }
+
+    .image {
+        @include xy-cell(12);
+        @include flex;
+        @include flex-align($x: center);
+        @include breakpoint(medium) {
+            @include xy-cell(3);
+        }
+
+        &.no-radius img {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &.contain img {
+            object-fit: contain;
+        }
+
+        img {
+            height: 250px;
+            width: 65%;
+            object-fit: cover;
+            object-position: top;
+            border-bottom-left-radius: 100%;
+            border-bottom-right-radius: 100%;
+            padding-bottom: 20px;
+
+            @include breakpoint(medium) {
+                width: 100%;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    .right {
+        @include xy-cell(12);
+
+        @include breakpoint(medium) {
+            @include xy-cell(7);
+        }
+    }
+
+    .left {
+        @include xy-cell(12);
+        order: 2;
+
+        @include breakpoint(medium) {
+            @include xy-cell(7);
+            order: 1;
+        }
+    }
+}
+
+// picture with text to the left
+// example in our vision or our mission
+.oneRow-twoCol-PicRight-H {
+    .image {
+        order: 1;
+        @include breakpoint(medium) {
+            order: 2;
+        }
+    }
+}
+
+//Tweak of above left picture right text component to work with team member page cause im lazy and dont feel like putting in all the html manually
+article.employees {
+    p {
+        text-align: left;
+    }
+}
+
+// grid of three cards with featured image as background
+// example in our values
+.three-card-with-BG {
+    .heading {
+        @include component-heading(200);
+        background-color: $dark-nav-color;
+        margin-bottom: 0;
+        color: $light-gray;
+    }
+
+    .full-width-container {
+        height: 100%;
+        background: $light-gray;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-attachment: fixed;
+
+        .grid-container {
+            @include xy-gutters(0, $gutter-position: top);
+        }
+
+        .card-list-fa-h {
+            @include xy-grid();
+            @include xy-grid-layout(1, '.card');
+            padding: 40px 0;
+
+            @include breakpoint(medium) {
+                @include xy-grid-layout(3, '.card');
+            };
+
+
+            .icon {
+                width: 100%;
+                height: 100%;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center center;
+
+                @include breakpoint(large) {
+                    height: 200px;
+                }
+
+                &#award {
+                    background-image: url(../images/stars_awardSVG.svg);
+                }
+
+                &#scale {
+                    background-image: url(../images/scaleSVG.svg);
+                }
+
+                &#client {
+                    background-image: url(../images/clientsSVG.svg);
+                }
+            }
+        }
+    }
+};
+
+// responsive accordian
+// example in our services
+.responsive-accordion {
+    transition: all .2s ease-out;
+    background-color: $dark-nav-color;
+    padding-bottom: rem-calc(48);
+
+    .grid {
+        @include xy-grid-container;
+
+        .heading {
+            @include component-heading(50);
+            color: $light-gray;
+        }
+
+        .tabs {
+            @include flex;
+            @include flex-align($x: center);
+
+            .tabs-title {
+                a {
+                    font-size: rem-calc(16);
+
+                    &:hover,
+                    &:focus {
+                        background-color: $secondary-color;
+                    }
+                }
+
+                &.is-active {
+                    & > a[aria-selected='true'] {
+                        background-color: $primary-color;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .tabs-content,
+        .accordion-content {
+
+            .tabs-panel {
+                padding: 0 ;
+
+                p {
+                    padding: 20px;
+                }
+
+                ul {
+                    width: 100%;
+                    margin: 0;
+
+                    li {
+                        @include serviceListItem;
+                    }
+                }
+            }
+        }
+
+        .accordion {
+            .accordion-item {
+                .accordion-title {
+                    font-size: rem-calc(28);
+
+                    &:hover,
+                    &:focus {
+                        background-color: $secondary-color;
+                    }
+
+                    &[aria-expanded="true"] {
+                        background-color: $primary-color;
+                        color: white;
+                    }
+                }
+                .accordion-content {
+                    padding: 0;
+
+                    p {
+                        padding: 20px;
+                    }
+
+                    .acc-list {
+                        margin: 0;
+
+                        li {
+                            @include serviceListItem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//two column layout
+.row {
+    @include xy-grid();
+    padding-bottom: 40px;
+
+    .column {
+        @include xy-cell(12);
+
+        @include breakpoint(medium) {
+            @include xy-cell(6);
+        }
+    }
+}
+
+//single column checklist
+.simple-ul {
+
+    margin-bottom: 0;
+
+    li {
+        @include flex;
+        @include flex-align($y: top);
+        padding: 5px 0;
+        list-style: none;
+        
+        &:before {
+            content: "\25A0";
+            color: $secondary-color;
+            font-size: rem-calc(24);
+            line-height: 0;
+            padding: 12px 10px 0 0;
+            position: relative;
+        }
+
+        .lp {
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+//6/4/2 column grid
+.column-grid {
+    @include xy-grid;
+    @include flex;
+    @include flex-align($x: center);
+
+    .grid-item {   
+        @include flex;
+        @include xy-cell(6);
+        @include xy-gutters(30, $gutter-position: top bottom);
+        background-color: transparent;
+        position: relative;
+        min-height: 60px;
+
+        @include breakpoint(medium) {
+            @include xy-cell(4);
+        }
+        
+        @include breakpoint(large) {
+            @include xy-cell(2);
+        }
+
+        img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        a {
+            min-height: 100px;
+            width: 100%;
+            transition: all 0.2s ease-out;
+            position: relative;
+            color: darken($secondary-color, 40);
+
+            &:hover,
+            &:focus {
+                color: white;
+            }
+
+            strong {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                display: inline-block;
+                width: 100%;
+                height: auto;
+                text-align: center;
+                padding: 0 5px;
+            }
+
+        }
+        
+    }
+}
+
+// block grid of cards
+.block-grid {
+    @include xy-grid;
+    @include xy-grid-layout(1, '.grid-item');
+
+    @include breakpoint(medium) {
+        @include xy-grid-layout(2, '.grid-item');
+    }
+    
+    @include breakpoint(large) {
+        @include xy-grid-layout(3, '.grid-item');
+    }
+
+    .grid-item {   
+        @include card-container();
+        background-color: transparent;
+        position: relative;
+        min-height: 100%;
+
+        &:hover {
+            background-color: darken($white, 5);
+        }
+
+        .image {
+            @include card-section;
+            flex: 0 0 auto;
+            
+            img {
+                object-fit: contain;
+                height: 200px;
+                width: 100%;
+            }
+        }
+
+        a.partner-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .title {
+            @include card-divider;
+        }
+
+        .desc {
+            @include card-section;
+        }
+    }
+}
+
+//centered social media
+.social-media,
+#nav_menu-2 {
+    @include flex;
+    @include flex-direction(column);
+    text-align: center;
+
+    .watch,
+    .menu-social-container {
+        @include flex;
+        @include flex-align($x: center);
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            width: 50px;
+            font-size: rem-calc(24);
+
+            a {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.footer-container .social-media {
+    .watch {
+        @include flex-align($x: left);
+        padding-bottom: 20px;
+    }
+}
+
+//sliders
+
+.orbit {
+    &.half-header {
+        img {
+            min-width: 100%;
+            object-fit: cover;
+            object-position: top;
+            height: 40vh;
+
+            @include breakpoint(medium) {
+                height: 60vh;
+            }
+
+            @include breakpoint(xlarge) {
+                height: 70vh;
+            }
+        }
+    }
+
+    &.testimonials {
+        .orbit-slide {
+            .card {
+                margin: 0 auto;
+                box-shadow: initial;
+                width: 80%;
+
+                .card-section {
+                    @include flex;
+                    margin: 0 auto;
+
+                    i {
+                        font-size: 1.5rem;
+                        color: $dark-gray;
+
+                        &:last-child {
+                            @include flex-align-self(bottom);
+                        }
+                    }
+
+                    .testimonial-content {
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+
+        .orbit-bullets {
+            button {
+                width: 0.5rem;
+                height: 0.5rem;
+            }
+        }
+    }
+}
+
+
