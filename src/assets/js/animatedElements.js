@@ -32,8 +32,6 @@ function animateValue(id, start, end, duration) {
   timer = setInterval(run, stepTime);
   run();
 }
-// to keep track of the times the element fires off. will need a better solution for multiple items
-let counter = 0;
 
 // Cache all animated elements
 var $animation_elements = $(".animation-element");
@@ -62,12 +60,13 @@ function check_if_in_view() {
         element_bottom_position >= window_top_position &&
         element_top_position <= window_bottom_position
       ) {
+
+        if(!$element.hasClass('in-view') && $element.hasClass('animated-text')) {
+          animateValue($element.attr('id'), 0, $element.html(), 2000);
+        }
+
         $element.addClass("in-view");
         // console.log($element);
-        if (counter === 0) {
-          animateValue("law-num", 0, 150, 2000);
-        }
-        counter++;
       }
     } else {
       $element.addClass("in-view");
