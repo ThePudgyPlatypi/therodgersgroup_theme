@@ -67,7 +67,7 @@ $the_query = new WP_Query($body);
                     width="100%"
                     viewBox="0 0 100 100" 
                     preserveAspectRatio="none">
-                    <image y="0" x="0" height="100%" width="100%" preserveAspectRatio="none" xlink:href="<?php bloginfo('template_url'); ?>/dist/assets/images/Name-plaque.svg">
+                    <image y="0" x="0" height="100%" width="100%" preserveAspectRatio="none" xlink:href="<?php bloginfo('template_url'); ?>/src/assets/images/Name-plaque.svg">
                 </svg>
                 
                 <a href="<?php the_permalink(); ?>"><strong> <?php if(get_the_title() !== "zzzfiller") { the_title(); } ?> </strong> </a>

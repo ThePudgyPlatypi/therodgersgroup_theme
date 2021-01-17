@@ -5,13 +5,14 @@ Template Name: Testimonials Page
 get_header();
 
 // retrieving featured image to put in background of header below
-$backgroundImg = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
+// $backgroundImg = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
 
 ?>
 <div class="main-container">
 	<div class="main-grid">
 		<main class="main-content-full-width">
-			<header class="featured-hero half-hero" role="banner" style="background-image:url('<?php echo $backgroundImg[0]?>')">
+			<header class="no-header-header-container">
+				<div class="no-header-bg"></div>
 				<div class="header-overlay"></div>
 				<div class="round-bottom">
 					<div class="menu-logo-container">
@@ -21,7 +22,7 @@ $backgroundImg = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 
 			</header>
 
 			<section class="body">
-				<?php include(locate_template('template-parts/content-test.php',false,false) ); ?>
+				<?php include(locate_template('template-parts/content-test.php', false, false)); ?>
 			</section>
 		</main>
 	</div>
