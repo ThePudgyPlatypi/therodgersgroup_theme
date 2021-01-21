@@ -58,6 +58,9 @@
   Add your scss files below to structure your project styles
 */
 
+//Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:500&display=swap');
+
 // Global
 @import "global/accessibility";
 @import "global/colors";
@@ -89,6 +92,3 @@
 
 // My Styles
 @import "style";
-
-//Fonts
-@import url('https://fonts.googleapis.com/css?family=Cinzel:400|Crimson+Text:400&display=swap');
