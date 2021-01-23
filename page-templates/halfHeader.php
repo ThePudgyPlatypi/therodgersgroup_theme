@@ -35,7 +35,7 @@ if ($additionalImages) {
                 </div>
                 <div class="orbit half-header" role="region" aria-label="accreditation services header slider"
                     data-orbit
-                    data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+                    data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out; timerDelay: 3000">
                     <div class="orbit-wrapper">
                         <ul class="orbit-container">
                             <?php foreach ($imageArray as $key => $image) { ?>
@@ -49,7 +49,7 @@ if ($additionalImages) {
                     </div>
                     
                 </div>
-                <?php } elseif (is_page("corporate-values")) { ?>
+            <?php } elseif (is_page("corporate-values")) { ?>
                 <header class="featured-hero half-hero-video" role="banner"
                     style="background-image: url(<?php the_post_thumbnail_url(); ?>)">
                     <video playsinline autoplay muted loop class="hero-video" autoplay loop
@@ -75,7 +75,7 @@ if ($additionalImages) {
                     </div>
                     <!-- <div class="video-overlay"></div> -->
 
-                    <?php } else { ?>
+                <?php } else { ?>
                     <header class="featured-hero half-hero" role="banner"
                         style="background-image:url('<?php echo $backgroundImg[0] ?>')">
                         <div class="read-more-arrow">
@@ -84,7 +84,7 @@ if ($additionalImages) {
                                 <i class="fas fa-chevron-down"></i>
                             </a>
                         </div>
-                        <?php }; ?>
+                <?php }; ?>
 
                         <div class="header-overlay"></div>
                         <div class="round-bottom" id="scroller">
