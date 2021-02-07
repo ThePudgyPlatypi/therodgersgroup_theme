@@ -17,6 +17,10 @@
   @include xy-grid-container;
   padding-bottom: 2rem;
 
+  .menu-social-container .menu {
+      justify-content: center;
+  }
+
   .widget_bpfwp_contact_card_widget {
     text-align: center;
 
